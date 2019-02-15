@@ -1,0 +1,12 @@
+<html xmlns:th= "http://www.thymeleaf.org">
+
+
+<form action = "/boardUpdate" method="post">		
+		No : <input type="text" th:name="boardNo" th:value=${board.boardNo} readonly> <br>
+		제목 : <input type="text" th:name="boardTitle" th:value=${board.boardTitle}> <br>
+		내용 : <input type="text" th:name="boardContent" th:value=${board.boardContent}> <br>
+		글쓴이 : <input type="text" th:name="boardUser" th:value=${board.boardUser} readonly> <br>
+		등록일자 : <input type="text" th:name="boardDate" th:value=${board.boardDate} readonly> <br>	
+		비밀번호 입력: <input type="password" name="boardPw"> 
+		<input type="submit" value="수정 완료">			
+</form>	

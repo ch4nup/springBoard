@@ -1,0 +1,26 @@
+<html xmlns:th= "http://www.thymeleaf.org">
+<table border="1">
+	<tr>
+		<td>No</td>
+		<td>제목</td>
+		<td colspan="2">글쓴이</td>
+		
+	</tr>
+	<tr>
+	    <!-- Board객체 내 b -->
+		<td th:text="${board.boardNo}"></td>
+		<td th:text="${board.boardTitle}"></td>
+		<td th:text="${board.boardUser}"></td>
+		
+	</tr>
+	<tr>
+		<td>내용</td>
+		<td th:text="${board.boardContent}" ></td>
+		<td></td>
+	</tr>	
+</table>
+<form action = "/boardRemove" method="post">	
+		<input type="hidden" th:name="boardNo" th:value=${board.boardNo}> <br>
+		비밀번호 입력 : <input type="password" name="boardPw">
+		<input type="submit" value="삭제 완료">		
+</form>	
