@@ -48,6 +48,7 @@ public class BoardService {
 	}
 	//BoardMapper 객체 내 글을 삭제하는 deleteBoard메서드 호출
 	public int removeBoard(Board board) {
+		
 		return boardMapper.deleteBoard(board);
 	}
 	//BoardMapper 객체 내 글을 수정하는 updateBoard메서드 호출

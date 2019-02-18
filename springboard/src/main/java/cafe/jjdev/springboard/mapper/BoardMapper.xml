@@ -63,7 +63,8 @@
 			SET board_pw=#{boardPw},	
 				board_title=#{boardTitle},
 				board_content=#{boardContent}
-			WHERE board_no=#{boardNo}				
+			WHERE board_no=#{boardNo} 
+			AND board_pw=#{boardPw}				
 	</update>
 	<!-- 글을 삭제하는 delete쿼리문 -->
 	<delete id="deleteBoard"
