@@ -28,8 +28,9 @@ public class BoardController {
     // 글 수정 요청 - 수정폼에서 넘어온 데이터들을 받아 Board객체 내부에 세팅. BoardService객체 내 modifyBoard메서드 호출, 리다이렉트 방식으로 boardList로 이동.
     @PostMapping(value="/boardUpdate")
     public String boardUpdate(Board board) {
+    	System.out.println(board.getBoardNo() + "<-boardNo");
+    	System.out.println(board.getBoardPw() + "<-boardPw");
     	boardService.modifyBoard(board);
-    	
     	return "redirect:/boardList";
     }
     
@@ -42,9 +43,10 @@ public class BoardController {
     }
     // 글 삭제 요청 - 삭제화면에 입력된 데이터들을 받아 Board객체 내 세팅, BoardService객체 내 removeBoard메서드 호출, 리다이렉트 방식으로 boardList로 이동.
     @PostMapping(value="/boardRemove")
-    public String boardRemove(Board board, Model model) {
+    public String boardRemove(Board board) {
     	boardService.removeBoard(board);  
-    	
+    	System.out.println(board.getBoardNo() + "<-boardNo");
+    	System.out.println(board.getBoardPw() + "<-boardPw");
         return "redirect:/boardList";       
     }
     

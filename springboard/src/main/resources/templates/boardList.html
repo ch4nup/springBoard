@@ -2,7 +2,9 @@
 <head>
 </head>
 <body>
-	전체 행 : <span th:text = "${boardCount}"></span>
+	<h1>boardList</h1>	
+	전체 글 : <span th:text = "${boardCount}"></span>개
+	<a href = "/boardAdd">[글작성]</a>
 	<table border=1>
 		<tr>
 			<td>No</td>
@@ -21,7 +23,7 @@
 			</td>
 			<td th:text="${s.boardUser}"></td>				
 		</tr>
-	</table>	
+	</table>				
 			<!-- 페이징 출력 -->										
 			<span th:if="${currentPage > 1}">
 				<a th:href = "@{boardList(currentPage=1)}">[처음 페이지]</a>
