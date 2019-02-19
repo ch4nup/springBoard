@@ -1,0 +1,48 @@
+<html xmlns:th= "http://www.thymeleaf.org">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('#delete').click(function(){
+		if($('#pw').val() == $('#boardPw').val()) {
+			$('#pw').val('비밀번호 확인 완료');
+			$('#form').submit();
+		}else{
+			$('#pw').val('비밀번호 불일치');
+			 $('#pw').focus();
+		}		
+	});	
+});
+</script>
+</head>
+<body>
+<h1>boardRemove</h1>
+	<a href = "/boardAdd">[글작성]</a>
+	<a href = "/boardList">[글목록]</a>	
+	<table border="1">
+		<tr>
+			<td>No</td>
+			<td th:text="${board.boardNo}"></td>				
+		</tr>	
+		<tr>
+			<td>제목</td>
+			<td th:text="${board.boardTitle}"></td>					
+		</tr>
+		<tr>
+			<td>글쓴이</td>
+			<td th:text="${board.boardUser}"></td>	
+			
+		</tr>
+		<tr>
+			<td>내용</td>
+			<td th:text="${board.boardContent}" ></td>			
+		</tr>	
+	</table>
+	<!-- 비밀번호와 boardNo변수에 복사된 값을 post방식으로 boardRemove로 이동 요청 -->
+	<form id = "form" action = "/boardRemove" method="post">	
+			<input type="hidden" th:name="boardNo" th:value=${board.boardNo}> <br>
+			<input type="hidden" th:id="boardPw" th:name="boardPw" th:value="${board.boardPw}">
+			비밀번호 입력 : <input type="text" id="pw" value="">
+			<input type="button" id="delete" value="삭제 완료">			
+	</form>	
+</body>	

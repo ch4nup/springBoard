@@ -1,0 +1,37 @@
+<html xmlns:th= "http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<h1>boardList</h1>	
+	전체 글 : <span th:text = "${boardCount}"></span>개
+	<a href = "/boardAdd">[글작성]</a>
+	<table border=1>
+		<tr>
+			<td>No</td>
+			<td>제 목</td>
+			<td>글쓴이</td>					
+		</tr>
+		<!-- Map영역에 세팅된 Board객체 주소 받기 -->
+		<tr th:each="s : ${resultMap.list}">
+		<!-- 각각의 Board객체에 세팅된 데이터 출력하기 -->	
+			<td th:text="${s.boardNo}"></td>
+			<td>
+			<!-- 제목 클릭시 boardNo에 복사된 값을 가지고 get방식으로 boardView로 이동 -->
+				<a th:href = "@{boardView(boardNo=${s.boardNo})}">
+					<span th:text = "${s.boardTitle}"></span>			
+				</a>
+			</td>
+			<td th:text="${s.boardUser}"></td>				
+		</tr>
+	</table>				
+			<!-- 페이징 출력 -->										
+			<span th:if="${currentPage > 1}">
+				<a th:href = "@{boardList(currentPage=1)}">[처음 페이지]</a>
+				<a th:href = "@{boardList(currentPage=${currentPage} - 1)}">[이전]</a>	
+			</span>		
+			<span th:if="${currentPage < lastPage + 1}">
+				<a th:href = "@{boardList(currentPage=${currentPage} + 1)}">[다음]</a>
+				<a th:href = "@{boardList(currentPage=${lastPage} + 1)}">[마지막 페이지]</a>
+			</span>			
+</body>
+</html>

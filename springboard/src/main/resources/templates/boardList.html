@@ -1,11 +1,75 @@
 <html xmlns:th= "http://www.thymeleaf.org">
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>boardList</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Plugin CSS -->
+  <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="css/freelancer.min.css" rel="stylesheet">
 </head>
-<body>
-	<h1>boardList</h1>	
+<body id="page-top">
+	 <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">SpringBoard</a>
+     
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/boardAdd">글작성</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/boardList">글목록</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+	
+	<!-- 화면에 입력된 데이터를  post방식으로 /boardAdd로 전송 -->
+	 <section id="contact">
+     <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <p class="help-block text-danger"></p>
+              </div>
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <p class="help-block text-danger"></p>
+              </div>
+               <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <p class="help-block text-danger"></p>
+              </div>
+                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <p class="help-block text-danger"></p>
+              </div>
+             
+     </div>
+	
+	
+<div class="container">
+ <h1>boardList</h1>
+  
 	전체 글 : <span th:text = "${boardCount}"></span>개
-	<a href = "/boardAdd">[글작성]</a>
-	<table border=1>
+	<table class="table table-striped">
 		<tr>
 			<td>No</td>
 			<td>제 목</td>
@@ -23,15 +87,25 @@
 			</td>
 			<td th:text="${s.boardUser}"></td>				
 		</tr>
-	</table>				
+	</table>
+	         <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
 			<!-- 페이징 출력 -->										
 			<span th:if="${currentPage > 1}">
+				
 				<a th:href = "@{boardList(currentPage=1)}">[처음 페이지]</a>
 				<a th:href = "@{boardList(currentPage=${currentPage} - 1)}">[이전]</a>	
 			</span>		
 			<span th:if="${currentPage < lastPage + 1}">
 				<a th:href = "@{boardList(currentPage=${currentPage} + 1)}">[다음]</a>
 				<a th:href = "@{boardList(currentPage=${lastPage} + 1)}">[마지막 페이지]</a>
-			</span>			
+			</span>	
+			   </div>
+            </div>		
+	        </div>
+      
+
+  </section>				
+			
 </body>
 </html>
