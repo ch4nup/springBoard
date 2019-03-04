@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cafe.jjdev.springboard.mapper.BoardMapper">
+	
 	<!-- 하나의 게시글을 출력하는 select쿼리문 -->
 	<select id="selectBoard"
 			parameterType="int"
@@ -17,7 +18,9 @@
 			FROM board
 			WHERE board_no=#{boardNo}
 	</select>
+	
 	<!-- <resultMap type="" id=""></resultMap> -->
+	
 	<!-- 게시글 목록을 출력하는 select쿼리문 -->
 	<select id="selectBoardList"
 			parameterType="java.util.Map"
@@ -31,6 +34,7 @@
 			ORDER BY board_date DESC
 			LIMIT #{startRow}, #{ROW_PER_PAGE}			
 	</select>
+	
 	<!-- 전체행의 갯수를 출력하는 select쿼리문 -->
 	<select id="selectBoardCount"
 			resultType="int">
@@ -38,9 +42,12 @@
 			 	count(board_no)
 			FROM board		
 	</select>
+	
 	<!-- 글을 등록하는 insert쿼리문 -->
-	<insert id="insertBoard"
-			parameterType="cafe.jjdev.springboard.vo.Board">
+	<insert id="insertBoard" parameterType="cafe.jjdev.springboard.vo.Board">			
+		<selectKey resultType="int" keyProperty="boardNo" order="AFTER">				
+			SELECT LAST_INSERT_ID()				
+		</selectKey>						
 			INSERT INTO 
 				board(
 					board_pw,
@@ -56,6 +63,9 @@
 					now()					  
 			)
 	</insert>
+	
+	
+	
 	<!-- 글을 수정하는 update쿼리문 -->
 	<update id="updateBoard"
 			parameterType="cafe.jjdev.springboard.vo.Board">
@@ -66,6 +76,7 @@
 			WHERE board_no=#{boardNo} 
 			AND board_pw=#{boardPw}				
 	</update>
+	
 	<!-- 글을 삭제하는 delete쿼리문 -->
 	<delete id="deleteBoard"
 			parameterType="cafe.jjdev.springboard.vo.Board">

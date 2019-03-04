@@ -81,15 +81,7 @@ $(document).ready(function(){
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
               <p class="help-block text-danger"></p>
               </div>
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-              <p class="help-block text-danger"></p>
-              </div>
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-              <p class="help-block text-danger"></p>
-              </div>
-               <div class="form-group floating-label-form-group controls mb-0 pb-2">
-              <p class="help-block text-danger"></p>
-              </div>
+          
      </div>
     <div class="container">
     <h1>boardAdd</h1>
@@ -99,7 +91,7 @@ $(document).ready(function(){
         <div class="col-lg-8 mx-auto">
           <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
           <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-          <form action= "/boardAdd" method="post" name="sentMessage" id="contactForm" novalidate="novalidate">
+          <form action= "/boardAdd" method="post" name="sentMessage" id="contactForm" novalidate="novalidate" enctype="multipart/form-data">
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>제 목</label>
@@ -128,6 +120,14 @@ $(document).ready(function(){
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>비밀번호</label>
                 <input class="form-control" id="pw" name="boardPw" placeholder="Password" type="text" value="" required="required" data-validation-required-message="Please enter a message.">
+                <span id="pwDiv"></span>
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+             <div class="control-group">
+              <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                <label>파일 업로드</label>
+                <input class="form-control" name="files" type="file"  required="required" data-validation-required-message="Please enter a message.">
                 <span id="pwDiv"></span>
                 <p class="help-block text-danger"></p>
               </div>

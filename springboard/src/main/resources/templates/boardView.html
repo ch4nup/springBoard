@@ -49,15 +49,7 @@
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
               <p class="help-block text-danger"></p>
               </div>
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-              <p class="help-block text-danger"></p>
-              </div>
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-              <p class="help-block text-danger"></p>
-              </div>
-              <div class="form-group floating-label-form-group controls mb-0 pb-2">
-              <p class="help-block text-danger"></p>
-              </div>
+              
      </div>
      </section>
 
@@ -80,7 +72,8 @@
 	<tr>
 		<td>내용</td>
 		<td th:text="${board.boardContent}" ></td>			
-	</tr>	
+	</tr>
+	
 </table>
 <a th:href = "@{/boardUpdate(boardNo=${board.boardNo})}">수정</a>
 <a th:href = "@{/boardRemove(boardNo=${board.boardNo})}">삭제</a>

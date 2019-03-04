@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import cafe.jjdev.springboard.vo.Board;
+import cafe.jjdev.springboard.vo.Boardfile;
 
 @Mapper //spring bean형태로 만듦
 public interface BoardMapper {
@@ -18,6 +19,7 @@ public interface BoardMapper {
 	 //글을 등록하는 insertBoard메서드 선언
 	 int insertBoard(Board board);
 	 //글을 수정하는 updateBoard메서드 선언
+	
 	 int updateBoard(Board board);
 	 //글을 삭제하는 selectBoard메서드 선언
 	 int deleteBoard(Board board);	

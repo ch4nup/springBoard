@@ -1,6 +1,10 @@
 package cafe.jjdev.springboard.controller;
 
+import java.io.IOException;
+
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,8 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import cafe.jjdev.springboard.service.BoardService;
 import cafe.jjdev.springboard.vo.Board;
+import cafe.jjdev.springboard.vo.BoardRequest;
+import cafe.jjdev.springboard.vo.Boardfile;
 
 @Controller
 public class BoardController {
@@ -55,7 +62,10 @@ public class BoardController {
     public String boardView(Model model, int boardNo) {
         System.out.println(boardNo + "<-boardNo.boardView");
     	Board board = boardService.getBoard(boardNo);
+    	Boardfile boardfile = boardService.getBoardfile(boardNo);
+    	
     	model.addAttribute("board", board);
+    	model.addAttribute("boardfile", boardfile);
         return "/boardView";
     }
     
@@ -74,11 +84,22 @@ public class BoardController {
     
     
     // 입력(액션) 요청 - 입력폼에 입력된 데이터를 받아 Board객체에 세팅. BoardService객체 내 addBoard메서드를 호출. 리다이렉트 방식으로 boardList로 이동.
+   
+	/*
+	 * public String boardAdd(Board board, @RequestParam(value="file")
+	 * MultipartFile[] file) {
+	 */
     @PostMapping(value="/boardAdd")
-    public String boardAdd(Board board) {
+    public String boardAdd(BoardRequest boardRequest, HttpServletRequest request) throws IllegalStateException, IOException {
+    	System.out.println("01 boardAdd.BoardController");
+    	//board안에 fileList를 분해하여 DB에 들어갈수 있는 형태로 작업해야함
+    	//파일저장된 경로 필요
+    	//request를 서비스로 넘기면 서비스도 컨트롤러가 되는거임 그러면 안댐
+    	String path = request.getSession().getServletContext().getRealPath(request.getContextPath() + "/upload");
     	//spring이 board를 채워주려함=command객체, 필드명=인풋타임명 =>setter
-        System.out.println(board);
-        boardService.addBoard(board);
+        System.out.println("boardRequest : " + boardRequest);
+        System.out.println("boardRequest.file : " + boardRequest.getFiles());
+        boardService.addBoard(boardRequest, path);
         return "redirect:/boardList"; // 글입력후 "/boardList"로 리다이렉트(재요청)
     }
     // 입력페이지 요청 - 웹브라우저 경로에 boardAdd를 입력하면 boardAdd.html화면이 출력.
