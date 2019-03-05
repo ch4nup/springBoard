@@ -28,6 +28,8 @@
 <script>
 $(document).ready(function(){
 	$('#sendMessageButton').click(function(){
+		
+
 		if($('#title').val() == "") {
 			$('#titleDiv').text('제목을 입력하세요.');
 			$('#title').focus();
@@ -49,8 +51,9 @@ $(document).ready(function(){
 		} else {
 			$('#contactForm').submit();
 		}	
-	});	
+	});
 });
+
 </script>
 </head>
 <body id="page-top">
@@ -127,10 +130,11 @@ $(document).ready(function(){
              <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>파일 업로드</label>
-                <input class="form-control" name="files" type="file"  required="required" data-validation-required-message="Please enter a message.">
+                <input class="form-control" multiple="multiple" id="files" name="files" type="file"  required="required" data-validation-required-message="Please enter a message.">
                 <span id="pwDiv"></span>
                 <p class="help-block text-danger"></p>
               </div>
+              <div id="fileDiv"></div>
             </div>
             <br>
             <div id="success"></div>

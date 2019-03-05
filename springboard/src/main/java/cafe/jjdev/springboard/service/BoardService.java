@@ -30,7 +30,8 @@ public class BoardService {
 	public Board getBoard(int boardNo) {
 		return boardMapper.selectBoard(boardNo);
 	}
-	public Boardfile getBoardfile(int boardNo) {
+	//BoardfileMapper 객체 내 파일정보를 조회하는 selectBoardfile메서드 호출
+	public List<Boardfile> getBoardfile(int boardNo) {
 		return boardFileMapper.selectBoardfile(boardNo);
 	}
 	//BoardMapper 객체 내 글 목록을 검색하는 selectBoardcount메서드 호출, 페이지당 10행씩 출력, 리턴값 Map영역에 세팅 후 리턴.
@@ -57,7 +58,7 @@ public class BoardService {
 	}
 	
 	
-	//BoardMapper 객체 내 글을 등록하는 insertBoard메서드 호출
+	//BoardMapper 객체 내 글을 등록하고 BoardFileMapper 객체 내 파일 정보를 등록하는 insertBoard메서드 호출, 파일을 경로에 저장.
 	public void addBoard(BoardRequest boardRequest, String path) throws IllegalStateException, IOException {
 		System.out.println("02 addBoard.BoardService");
 		/*
@@ -95,9 +96,7 @@ public class BoardService {
 			//3 파일저장			
 			f.transferTo(new File(path+"/"+ fileName + "." + ext));		
 			boardFileMapper.insertBoardFile(boardfile);
-		}	
-			
-					
+		}									
 	}
 	
 	//BoardMapper 객체 내 글을 삭제하는 deleteBoard메서드 호출

@@ -1,7 +1,7 @@
 package cafe.jjdev.springboard.controller;
 
 import java.io.IOException;
-
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,11 +58,12 @@ public class BoardController {
     }
     
     // 글 상세 내용 요청 - 리스트에서 제목 클릭시 넘어온 boardNo값을 받아 BoardService객체 내 getBoard메서드 호출시 입력, 리턴된 Board객체의 주소를 Model영역에 세팅, 포워드방식으로 boardView화면 출력.
+    //BoardService객체 내 getBoardfile메서드 호출시 boardNo입력, 리턴된 값을 boardfile개체참조변수에 복사, model영역에 세팅.
     @GetMapping(value="/boardView")
     public String boardView(Model model, int boardNo) {
         System.out.println(boardNo + "<-boardNo.boardView");
     	Board board = boardService.getBoard(boardNo);
-    	Boardfile boardfile = boardService.getBoardfile(boardNo);
+    	List<Boardfile> boardfile = boardService.getBoardfile(boardNo);
     	
     	model.addAttribute("board", board);
     	model.addAttribute("boardfile", boardfile);
@@ -83,8 +84,8 @@ public class BoardController {
     }
     
     
-    // 입력(액션) 요청 - 입력폼에 입력된 데이터를 받아 Board객체에 세팅. BoardService객체 내 addBoard메서드를 호출. 리다이렉트 방식으로 boardList로 이동.
-   
+    // 입력(액션) 요청 - 입력폼에 입력된 내용과 파일을 BoardRequest객체 내 세팅, 파일 경로 구하기.
+    //BoardService객체 내 addBoard메서드를 호출. 리다이렉트 방식으로 boardList로 이동. 
 	/*
 	 * public String boardAdd(Board board, @RequestParam(value="file")
 	 * MultipartFile[] file) {

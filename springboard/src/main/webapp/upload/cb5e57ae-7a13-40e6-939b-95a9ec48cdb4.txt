@@ -1,0 +1,13 @@
+iq : 150
+cmv
+command 패턴
+
+
+https://mvnrepository.com/
+메이븐 빌드툴을 쓰는사람의 라이브러리가 다있음
+
+우리는 앤트 빌드툴 옛날꺼임
+
+jstl
+el
+짝코딩

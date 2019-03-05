@@ -18,8 +18,7 @@ public interface BoardMapper {
 	 int selectBoardCount(); 
 	 //글을 등록하는 insertBoard메서드 선언
 	 int insertBoard(Board board);
-	 //글을 수정하는 updateBoard메서드 선언
-	
+	 //글을 수정하는 updateBoard메서드 선언	
 	 int updateBoard(Board board);
 	 //글을 삭제하는 selectBoard메서드 선언
 	 int deleteBoard(Board board);	

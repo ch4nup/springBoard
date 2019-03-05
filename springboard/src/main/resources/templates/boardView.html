@@ -73,7 +73,14 @@
 		<td>내용</td>
 		<td th:text="${board.boardContent}" ></td>			
 	</tr>
-	
+	<span th:if = "${boardfile} != null">
+		<span th:each = "s : ${boardfile}">
+			<tr>
+				<td>파일</td>
+				<td th:text = "${s.fileName}"></td>			
+			</tr>
+		</span>
+	</span>
 </table>
 <a th:href = "@{/boardUpdate(boardNo=${board.boardNo})}">수정</a>
 <a th:href = "@{/boardRemove(boardNo=${board.boardNo})}">삭제</a>
